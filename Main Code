@@ -1,26 +1,236 @@
+
 #include <iostream>
-#include <ctime>
 #include <cstdlib>
-#include <cmath>
+#include <ctime>
+#include <unistd.h>
 using namespace std;
 
-int main ()
-{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-return 0;
+void Input (){
+    char myArray[2][2]={{'O','O'},{'O','*'}};
+    char choice;
+    int score = 0;
+    while(true) {
+        // shuffle here
+        srand(time(NULL)); // seed random number generator
+        int x, y;
+        char temp;
+        for (int i=0;i<2;i++) {
+            for (int j=0;j<2;j++) {
+                x = rand() % 2;
+                y = rand() % 2;
+                temp = myArray[i][j];
+                myArray[i][j] = myArray[x][y];
+                myArray[x][y] = temp;
+            }
+        }
+        cout << endl << endl;
+        // print again
+        for (int i=0;i<2;i++){
+            for (int j=0;j<2;j++)
+                
+            {
+                cout << myArray[i][j]<<" ";
+            }
+            
+            cout << endl;
+        }
+        
+        cout << "Whack a mole: ";
+        
+        cin >> choice;
+        
+        
+        
+        //change && to || so that is counts for every matching input
+        
+        if (choice =='Q' ||choice == 'A' || choice == 'W' || choice == 'S'){
+            
+            //increse the score for matching input
+            
+            score+=1;
+        }
+        //break while loop if input doesn't match
+        
+        if(choice != 'Q' && choice != 'W' && choice != 'A' && choice != 'S') {
+            
+            break;
+        }
+        
+        if (score ==20){
+            
+            cout << "Next level" << endl;
+            
+            break;
+            
+        }
+        
+        //print score and ratio in every loop
+        
+        cout << "YOUR SCORE IS: " << score << " The hitting ratio is:" << (score/20.0)*100<<endl;
+        
+        cout << endl;
+    }
+    cout << endl;
+    //print final hitting ratio
+    cout<<"Your score is " <<score<<"\\20 "<<"Your hitting ratio is : "<<(score/20.0)*100 << "%" <<endl;
+    
+    cout << " WAIT 5 SEC FOR NEXT LEVEL" << endl;
+    
+    
 }
+
+void Draw ()
+{
+    char myArray[3][3]={{'O','O','O'},{'O','O','O'}, {'O','*','O'}}; // THIS CREATES THE ARRAY IN 3X3 SEQUANCE
+    char choice;
+    int score = 0;
+    while(true) {
+        // shuffle here
+        srand(time(NULL)); // seed random number generator
+        int x, y;
+        char temp;
+        for (int i=0;i<3;i++) {
+            for (int j=0;j<3;j++) {
+                x = rand() % 3;
+                y = rand() % 3;
+                temp = myArray[i][j];
+                myArray[i][j] = myArray[x][y];
+                myArray[x][y] = temp;
+            }
+        }
+        cout << endl << endl;
+        // print again
+        for (int i=0;i<3;i++){
+            for (int j=0;j<3;j++)
+                
+            {
+                cout << myArray[i][j]<<" ";
+            }
+            
+            cout << endl;
+        }
+        
+        cout << "Whack a mole: ";
+        
+        cin >> choice;
+        
+        // check here if input matches with mole, and increase score if it does
+        
+        //change && to || so that is counts for every matching input
+        
+        if (choice =='Q' ||choice == 'A' ||choice == 'Z' || choice == 'W' || choice == 'S' || choice == 'X' || choice =='E' || choice == 'D' || choice == 'C'){
+            
+            //increse the score for matching input
+            
+            score+=1;
+        }
+        //break while loop if input doesn't match
+        
+        if(choice != 'Q' && choice != 'W' && choice != 'E' && choice != 'A' && choice != 'S' && choice != 'D' && choice != 'Z' && choice != 'X' && choice != 'C') { // THIS SAYS IF THE USER PRESS ANYOTHER LETTER THEN IT WILL STOP RUNNING.
+            
+            break;
+        }
+        
+        if (score ==20){ // THIS TELLS THE CODE IF THE SCORE EQUALS 20 THEN STOP AND SAY NEXT LEVEL.
+            
+            cout << "Next level" << endl;
+            
+            break;
+            
+        }
+        
+        //print score and ratio
+        
+        cout << "YOUR SCORE IS: " << score << " The hitting ratio is:" << (score/20.0)*100<<endl;
+        
+        cout << endl;
+    }
+    cout << endl;
+    //print final hitting ratio
+    cout<<"Your score is " <<score<<"\\20 "<<"Your hitting ratio is : "<<(score/20.0)*100 << "%" <<endl;
+    
+}
+void Logic (){
+    char myArray[4][4]={{'O','O','O','O'},{'O','O','O','O'}, {'O','*','O','O'},{'O','O','O','O'}}; // THIS CREATES THE ARRAY IN 3X3 SEQUANCE
+    char choice;
+    int score = 0;
+    while(true) {
+        // shuffle here
+        srand(time(NULL)); // seed random number generator
+        int x, y;
+        char temp;
+        for (int i=0;i<4;i++) {
+            for (int j=0;j<4;j++) {
+                x = rand() % 4;
+                y = rand() % 4;
+                temp = myArray[i][j];
+                myArray[i][j] = myArray[x][y];
+                myArray[x][y] = temp;
+            }
+        }
+        cout << endl << endl;
+        // print again
+        for (int i=0;i<4;i++){
+            for (int j=0;j<4;j++)
+                
+            {
+                cout << myArray[i][j]<<" ";
+            }
+            
+            cout << endl;
+        }
+        
+        cout << "Whack a mole: ";
+        
+        cin >> choice;
+        
+        // check here if input matches with mole, and increase score if it does
+        
+        //change && to || so that is counts for every matching input
+        
+        if (choice =='Q' ||choice == 'A' ||choice == 'Z' || choice == 'W' || choice == 'S' || choice == 'X' || choice =='E' || choice == 'D' || choice == 'C' || choice == 'R' || choice == 'F' || choice == 'V'){
+            
+            //increse the score for matching input
+            
+            score+=1;
+        }
+        //break while loop if input doesn't match
+        
+        if(choice != 'Q' && choice != 'W' && choice != 'E' && choice != 'A' && choice != 'S' && choice != 'D' && choice != 'Z' && choice != 'X' && choice != 'C' && choice != 'R' && choice != 'F' && choice != 'V') { // THIS SAYS IF THE USER PRESS ANYOTHER LETTER THEN IT WILL STOP RUNNING.
+            
+            break;
+        }
+        
+        if (score ==20){ // THIS TELLS THE CODE IF THE SCORE EQUALS 20 THEN STOP AND SAY NEXT LEVEL.
+            
+            cout << "GAME OVER YOU WIN" << endl;
+            
+            break;
+            
+        }
+        
+        //print score and ratio
+        
+        cout << "YOUR SCORE IS: " << score << " The hitting ratio is:" << (score/20.0)*100<<endl;
+        
+        cout << endl;
+    }
+    cout << endl;
+    //print final hitting ratio
+    cout<<"Your score is " <<score<<"\\20 "<<"Your hitting ratio is : "<<(score/20.0)*100 << "%" <<endl;
+}
+
+int main() {
+   
+    Input (); // THIS RUNS THE VOID INPUT AS A HOLE.
+    usleep(5000000);// THIS MAKES THE CODE WAIT 5 SEC BEFORE RUNNING OTHER CODE.
+    Draw(); // THIS RUNS THE VOID DRAW AS A HOLE;
+    usleep(5000000); // THIS MAKES THE CODE WAIT 5 SEC BEFORE RUNNING OTHER CODE.
+    Logic ();
+    return 0;
+    
+    
+    
+}
+
