@@ -52,20 +52,23 @@ int main() {
         
         if(choice != 'Q' && choice != 'W' && choice != 'A' && choice != 'S') {
             
+            cout << "whoops! you hit the wrong key" << endl;
             break;
         }
         
         if (score ==20){
             
             cout << "Next level" << endl;
+            cout << " WAIT 5 SEC FOR NEXT LEVEL" << endl;
             
             break;
             
         }
         
+        
         //print score and ratio in every loop
         
-        cout << "YOUR SCORE IS: " << score << " The hitting ratio is:" << (score/20.0)*100<<endl;
+        cout << "YOUR SCORE IS: " << score << "/20: The hitting ratio is:" << (score/20.0)*100<<endl;
         
         cout << endl;
     }
@@ -73,7 +76,7 @@ int main() {
     //print final hitting ratio
     cout<<"Your score is " <<score<<"\\20 "<<"Your hitting ratio is : "<<(score/20.0)*100 << "%" <<endl;
     
-    cout << " WAIT 5 SEC FOR NEXT LEVEL" << endl;
+    
     
     usleep(5000000);
     
@@ -226,3 +229,5 @@ int main() {
     
 }
     
+
+
