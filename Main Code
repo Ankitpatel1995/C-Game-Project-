@@ -38,19 +38,18 @@ int main() {
         
         cin >> choice;
         
-        
+    
         
         //change && to || so that is counts for every matching input
         
-        if (choice =='Q' ||choice == 'A' || choice == 'W' || choice == 'S'){
+        if ((choice == 'Q' && myArray[0][0] == '*') || (choice == 'W' && myArray[0][1] == '*') || (choice == 'A' && myArray[1][0] == '*') || (choice == 'S' && myArray[1][1] == '*')) {
             
-            //increse the score for matching input
             
-            score+=1;
+            score += 1;
         }
         //break while loop if input doesn't match
         
-        if(choice != 'Q' && choice != 'W' && choice != 'A' && choice != 'S') {
+        if ((choice != 'Q' && myArray[0][0] == '*') || (choice != 'W' && myArray[0][1] == '*') || (choice != 'A' && myArray[1][0] == '*') || (choice != 'S' && myArray[1][1] == '*')) {
             
             cout << "whoops! you hit the wrong key" << endl;
             break;
