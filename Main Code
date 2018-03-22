@@ -67,14 +67,14 @@ int main() {
         }
         
         
-       
+        
         
         cout << "YOUR SCORE IS: " << score << "/20: The hitting ratio is:" << (score/20.0)*100<<endl;
         
         cout << endl;
     }
     cout << endl;
-   
+    
     cout<<"Your score is " <<score<<"\\20 "<<"Your hitting ratio is : "<<(score/20.0)*100 << "%" <<endl;
     
     
@@ -118,7 +118,7 @@ int main() {
             
             
             
-            if ((choice =='Q' && myArray[0][0] == '*') ||(choice == 'A' && myArray[1][0] == '*') || (choice == 'W' && myArray[0][1] == '*') || (choice == 'S' && myArray[1][1] == '*') || (choice == 'E' && myArray[0][2] == '*') || (choice == 'D' && myArray[1][2] == '*') || (choice == 'C' && myArray[2][2] == '*') || (choice == 'Z' && myArray[2][1] == '*') || (choice == 'X' && myArray[2][0] == '*')){
+            if ((choice =='Q' && myArray[0][0] == '*') ||(choice == 'A' && myArray[1][0] == '*') || (choice == 'W' && myArray[0][1] == '*') || (choice == 'S' && myArray[1][1] == '*') || (choice == 'E' && myArray[0][2] == '*') || (choice == 'D' && myArray[1][2] == '*') || (choice == 'C' && myArray[2][2] == '*') || (choice == 'Z' && myArray[2][0] == '*') || (choice == 'X' && myArray[2][1] == '*')){
                 
                 
                 
@@ -162,7 +162,7 @@ int main() {
             char myArray[4][4]={{'O','O','O','O'},{'O','O','*','O'},{'O','O','O','O'},{'O','O','O','O'}};
             char choice;
             while(true) {
-               
+                
                 srand(time(NULL));
                 int x, y;
                 char temp;
@@ -204,7 +204,7 @@ int main() {
                 
                 
                 if((choice != 'Q' && myArray [1][0]== '*') || (choice != 'W' && myArray [1][1]== '*') || (choice != 'A' && myArray [2][0]== '*') || (choice != 'S' && myArray [2][1]== '*') || (choice != 'E' && myArray [1][2]== '*') || (choice !='D' && myArray [2][2]== '*') || (choice != 'C' && myArray [3][2]== '*') || (choice != 'Z' && myArray [3][0]== '*') || (choice != 'X' && myArray [3][1]== '*') || (choice =='V' && myArray [3][3]== '*') || (choice !='F' && myArray [2][3]== '*') || (choice != 'R' && myArray [1][3]== '*') || (choice != '1' && myArray [0][0]== '*') || (choice != '2' && myArray [0][1]== '*') || (choice != '3' && myArray [0][2]== '*') || (choice != '4' && myArray [0][3]== '*')){
-
+                    
                     cout << "whoops! you hit the wrong key" << endl;
                     break;
                 }
@@ -224,7 +224,7 @@ int main() {
                 cout << endl;
             }
             cout << endl;
-           
+            
             cout<<"Your score is " <<score<<"\\60 "<<"Your hitting ratio is : "<<(score/60.0)*100 << "%" <<endl;
             
         }
@@ -234,6 +234,3 @@ int main() {
     return 0;
     
 }
-
-
-
