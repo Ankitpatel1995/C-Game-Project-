@@ -1,0 +1,318 @@
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <cstdlib>
+#include <conio.h>
+#include <unistd.h>
+using namespace std;
+
+void MainMenu(){
+
+    cout << "Welcome to Whack-a-mole!" << endl;
+    cout << endl << "MAIN MENU:" << endl;
+    cout << "Press L for How to Play:" << endl;
+    cout << "Press K for Controls:" << endl;
+    cout << "Press P to Play Now:" << endl;
+    cout << endl;
+}
+
+char MenuFunctions(char option){
+
+    char randomInput;
+
+        if (option == 'K' || option == 'k'){
+            cout << endl << "CONTROLS" << endl;
+            cout << endl;
+            cout << "The controls change for each difficulty setting as the levels increase in size." << endl;
+            cout << "All the keys used make a grid that corresponds to locations in the level." << endl;
+            cout << "First Level (2x2): Q,W,A,S" << endl;
+            cout << "Second Level (3x3): Q,W,E,A,S,D,Z,X,C" << endl;
+            cout << "Third Level (4x4): 1,2,3,4,Q,W,E,R,A,S,D,F,Z,X,C,V." << endl << endl;
+            cout << endl << "To continue, press any key and hit ENTER." << endl;
+            cin >> randomInput;
+            system("cls");
+            return option;
+        }
+        else if (option =='L' || option =='l'){
+            cout << endl << "OBJECTIVE" << endl;
+            cout << "This is a simple game where you have to whack the mole, represented by a *, by hitting the key" << endl;
+            cout << "that corresponds with the mole's location. The controls for each difficulty are shown under the" << endl;
+            cout << "Controls option in the menu. You only get a few seconds to see where the mole is located, so pay" << endl;
+            cout << "attention so you don't miss it!" << endl << endl;
+            cout << "To continue, press any key and hit ENTER." << endl;
+            cin >> randomInput;
+            system("cls");
+            return option;
+        }
+        else if (option == 'P' || option == 'p'){
+            cout << endl << "Get ready to whack some moles!" << endl;
+            return option;
+        }
+        else{
+            cout << endl << "That key doesn't do anything. Stop being incompetent!" << endl << endl;
+            return option;
+        }
+}
+
+
+int main(){
+
+    int i = 0;
+    char userInput;
+    char menuSelect;
+    int loopCheck;
+    int score = 0;
+    //clock_t start = clock();
+
+    while (i < 1){
+        MainMenu();
+        cin >> userInput;
+        loopCheck = MenuFunctions(userInput);
+        if (loopCheck == 'P' || loopCheck == 'p'){
+            i = 1;
+        }
+    }
+
+     if (loopCheck == 'P' || loopCheck == 'p'){
+    cout << "Game starts in 10 sec Be sure to have the cap lock on";
+        cout << endl;
+    }
+
+    if (loopCheck =='p' || loopCheck =='P'){
+    char myArray[2][2]={{'O','O'},{'O','*'}};
+    char choice;
+
+    while(true) {
+
+        srand(time(NULL));
+        int x, y;
+        char temp;
+        for (int i=0;i<2;i++) {
+            for (int j=0;j<2;j++) {
+                x = rand() % 2;
+                y = rand() % 2;
+                temp = myArray[i][j];
+                myArray[i][j] = myArray[x][y];
+                myArray[x][y] = temp;
+            }
+        }
+        cout << endl << endl;
+
+        for (int i=0;i<2;i++){
+            for (int j=0;j<2;j++)
+
+            {
+                cout << myArray[i][j]<<" ";
+            }
+
+            cout << endl;
+        }
+        clock_t start = clock();
+        cout << "Whack a mole: ";
+
+        while(!_kbhit() ){
+            if (((clock() - start)/CLOCKS_PER_SEC) >= 2){
+                cout << "\nTimeout 2" << endl;
+                break;
+            }
+            break;
+        }
+        cin >> choice;
+
+
+
+
+        if ((choice == 'Q' && myArray[0][0] == '*') || (choice == 'W' && myArray[0][1] == '*') || (choice == 'A' && myArray[1][0] == '*') || (choice == 'S' && myArray[1][1] == '*')) {
+
+
+            score += 1;
+        }
+
+        if ((choice != 'Q' && myArray[0][0] == '*') || (choice != 'W' && myArray[0][1] == '*') || (choice != 'A' && myArray[1][0] == '*') || (choice != 'S' && myArray[1][1] == '*')) {
+
+            cout << "whoops! you hit the wrong key"<< endl;
+            break;
+        }
+
+        if (score ==20){
+
+            cout << "Be ready for Next level"<< endl;
+            cout << endl;
+            cout << "WAIT 5 SEC FOR NEXT LEVEL" << endl;
+
+            break;
+
+        }
+
+
+        system("cls");
+
+
+        cout << "Your SCORE IS: " << score << "/20: The hitting ratio is:" << (score/20.0)*100<<endl;
+
+        cout << endl;
+
+    }
+
+    cout << endl;
+
+    cout<<"Your score is " <<score<<"\\20 "<<"Your hitting ratio is : "<<(score/20.0)*100 << "%" <<endl;
+
+
+
+    //usleep(5000000);
+
+    if ( score ==20){
+        char myArray[3][3]={{'O','O','O'},{'O','O','*'},{'O','O','O'}};
+        char choice;
+        while(true) {
+
+            srand(time(NULL));
+            int x, y;
+            char temp;
+            for (int i=0;i<3;i++) {
+                for (int j=0;j<3;j++) {
+                    x = rand() % 3;
+                    y = rand() % 3;
+                    temp = myArray[i][j];
+                    myArray[i][j] = myArray[x][y];
+                    myArray[x][y] = temp;
+                }
+            }
+            cout << endl << endl;
+
+            for (int i=0;i<3;i++){
+                for (int j=0;j<3;j++)
+
+                {
+                    cout << myArray[i][j]<<" ";
+                }
+
+                cout << endl;
+            }
+
+            cout << "Whack a mole: ";
+
+            cin >> choice;
+
+
+
+
+
+            if ((choice =='Q' && myArray[0][0] == '*') ||(choice == 'A' && myArray[1][0] == '*') || (choice == 'W' && myArray[0][1] == '*') || (choice == 'S' && myArray[1][1] == '*') || (choice == 'E' && myArray[0][2] == '*') || (choice == 'D' && myArray[1][2] == '*') || (choice == 'C' && myArray[2][2] == '*') || (choice == 'Z' && myArray[2][0] == '*') || (choice == 'X' && myArray[2][1] == '*')){
+
+
+
+                score+=1;
+            }
+
+
+            if((choice != 'Q' && myArray[0][0] == '*') || (choice != 'A' && myArray[1][0] == '*') || (choice != 'W' && myArray[0][1] == '*') || (choice != 'S' && myArray[1][1] == '*') || (choice != 'E' && myArray[0][2] == '*') || (choice != 'D' && myArray[1][2] == '*') || (choice != 'C' && myArray[2][2] == '*') || (choice != 'Z' && myArray[2][0] == '*') || (choice != 'X' && myArray[2][1] == '*')) {
+
+                cout << "whoops! you hit the wrong key" << endl;
+
+                break;
+            }
+
+            if (score ==40){
+
+                cout << "Next level" << endl;
+
+                cout << "WAIT 5 SEC FOR NEXT LEVEL" << endl;
+
+
+                break;
+
+            }
+
+            system("cls");
+
+            cout << "YOUR SCORE IS: " << score << " The hitting ratio is:" << (score/40.0)*100<<endl;
+
+            cout << endl;
+        }
+        cout << endl;
+
+        cout<<"Your score is " <<score<<"\\40 "<<"Your hitting ratio is : "<<(score/40.0)*100 << "%" <<endl;
+
+
+
+        //usleep(5000000);
+
+        if ( score ==40){
+            char myArray[4][4]={{'O','O','O','O'},{'O','O','*','O'},{'O','O','O','O'},{'O','O','O','O'}};
+            char choice;
+            while(true) {
+
+                srand(time(NULL));
+                int x, y;
+                char temp;
+                for (int i=0;i<4;i++) {
+                    for (int j=0;j<4;j++) {
+                        x = rand() % 4;
+                        y = rand() % 4;
+                        temp = myArray[i][j];
+                        myArray[i][j] = myArray[x][y];
+                        myArray[x][y] = temp;
+                    }
+                }
+                cout << endl << endl;
+
+                for (int i=0;i<4;i++){
+                    for (int j=0;j<4;j++)
+
+                    {
+                        cout << myArray[i][j]<<" ";
+                    }
+
+                    cout << endl;
+                }
+
+                cout << "Whack a mole: ";
+
+                cin >> choice;
+
+
+
+
+
+                if((choice == 'Q' && myArray [1][0]== '*') || (choice == 'W' && myArray [1][1]== '*')|| (choice == 'A' && myArray [2][0]== '*') || (choice == 'S' && myArray [2][1]== '*') || (choice == 'E' && myArray [1][2]== '*') || (choice =='D' && myArray [2][2]== '*') || (choice == 'C' && myArray [3][2]== '*') || (choice == 'Z' && myArray [3][0]== '*') || (choice == 'X' && myArray [3][1]== '*') || (choice =='V' && myArray [3][3]== '*') || (choice =='F' && myArray [2][3]== '*') || (choice == 'R' && myArray [1][3]== '*') || (choice == '1' && myArray [0][0]== '*') || (choice == '2' && myArray [0][1]== '*') || (choice == '3' && myArray [0][2]== '*') || (choice == '4' && myArray [0][3]== '*')){
+
+
+
+                    score+=1;
+                }
+
+
+                if((choice != 'Q' && myArray [1][0]== '*') || (choice != 'W' && myArray [1][1]== '*') || (choice != 'A' && myArray [2][0]== '*') || (choice != 'S' && myArray [2][1]== '*') || (choice != 'E' && myArray [1][2]== '*') || (choice !='D' && myArray [2][2]== '*') || (choice != 'C' && myArray [3][2]== '*') || (choice != 'Z' && myArray [3][0]== '*') || (choice != 'X' && myArray [3][1]== '*') || (choice =='V' && myArray [3][3]== '*') || (choice !='F' && myArray [2][3]== '*') || (choice != 'R' && myArray [1][3]== '*') || (choice != '1' && myArray [0][0]== '*') || (choice != '2' && myArray [0][1]== '*') || (choice != '3' && myArray [0][2]== '*') || (choice != '4' && myArray [0][3]== '*')){
+
+                    cout << "whoops! you hit the wrong key" << endl;
+                    break;
+                }
+
+                if (score ==60){
+
+                    cout << "YOU WIN THE GAME YEEPEE" << endl;
+
+                    break;
+
+                }
+
+                system("cls");
+
+                cout << "YOUR SCORE IS: " << score << " The hitting ratio is:" << (score/60.0)*100<<endl;
+
+                cout << endl;
+            }
+            cout << endl;
+
+            cout<<"Your score is " <<score<<"\\60 "<<"Your hitting ratio is : "<<(score/60.0)*100 << "%" <<endl;
+
+        }
+    }
+
+    }
+
+    return 0;
+
+}
