@@ -80,6 +80,7 @@ int main(){
 
     if (loopCheck =='p' || loopCheck =='P'){
     char myArray[2][2]={{'O','O'},{'O','*'}};
+    char myArray2[2][2]={{'O','O'},{'O','O'}};
     char choice;
 
     while(true) {
@@ -107,19 +108,29 @@ int main(){
 
             cout << endl;
         }
-        clock_t start = clock();
-        cout << "Whack a mole: ";
+        usleep(5000000);
+        system("cls");
+        cout << "Guess the mole" << endl;
+        for (int h=0;h<2;h++){
+            for (int y=0;y<2;y++)
 
-        while(!_kbhit() ){
-            if (((clock() - start)/CLOCKS_PER_SEC) >= 2){
-                cout << "\nTimeout 2" << endl;
-                break;
+            {
+                cout << myArray2[h][y]<<" ";
             }
-            break;
+
+            cout << endl;
         }
-        cin >> choice;
 
+        cout << "Whack a mole: ";
+        clock_t start = clock();
+        while(!_kbhit() ){
+     if (((clock() - start)/CLOCKS_PER_SEC) >= 18){
+                cout << "\nTimeout 2" << endl;
+             return 0;
+            }
 
+        }
+cin >> choice;
 
 
         if ((choice == 'Q' && myArray[0][0] == '*') || (choice == 'W' && myArray[0][1] == '*') || (choice == 'A' && myArray[1][0] == '*') || (choice == 'S' && myArray[1][1] == '*')) {
@@ -164,6 +175,7 @@ int main(){
 
     if ( score ==20){
         char myArray[3][3]={{'O','O','O'},{'O','O','*'},{'O','O','O'}};
+        char myArray2[3][3]={{'O','O','O'},{'O','O','O'},{'O','O','O'}};
         char choice;
         while(true) {
 
@@ -190,8 +202,28 @@ int main(){
 
                 cout << endl;
             }
+             usleep(5000000);
+        system("cls");
+        cout << "Guess the mole" << endl;
+        for (int h=0;h<3;h++){
+            for (int y=0;y<3;y++)
+
+            {
+                cout << myArray2[h][y]<<" ";
+            }
+
+            cout << endl;
+        }
 
             cout << "Whack a mole: ";
+            clock_t start = clock();
+        while(!_kbhit() ){
+     if (((clock() - start)/CLOCKS_PER_SEC) >= 15){
+                cout << "\nTimeout 2" << endl;
+             return 0;
+            }
+
+        }
 
             cin >> choice;
 
@@ -241,6 +273,7 @@ int main(){
 
         if ( score ==40){
             char myArray[4][4]={{'O','O','O','O'},{'O','O','*','O'},{'O','O','O','O'},{'O','O','O','O'}};
+            char myArray2[4][4]={{'O','O','O','O'},{'O','O','O','O'},{'O','O','O','O'},{'O','O','O','O'}};
             char choice;
             while(true) {
 
@@ -267,8 +300,28 @@ int main(){
 
                     cout << endl;
                 }
+                 usleep(5000000);
+        system("cls");
+        cout << "Guess the mole" << endl;
+        for (int h=0;h<4;h++){
+            for (int y=0;y<4;y++)
+
+            {
+                cout << myArray2[h][y]<<" ";
+            }
+
+            cout << endl;
+        }
 
                 cout << "Whack a mole: ";
+                clock_t start = clock();
+        while(!_kbhit() ){
+     if (((clock() - start)/CLOCKS_PER_SEC) >= 10){
+                cout << "\nTimeout 2" << endl;
+             return 0;
+            }
+
+        }
 
                 cin >> choice;
 
@@ -316,3 +369,4 @@ int main(){
     return 0;
 
 }
+
