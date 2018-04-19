@@ -1,62 +1,95 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <conio.h>
+#include <unistd.h>
 using namespace std;
 
-int MainMenu(){
+void MainMenu();
 
-    cout << "MAIN MENU:" << endl;
-    cout << "Press L for How to Play:" << endl;
-    cout << "Press K for Controls:" << endl;
-    cout << "Press P to Play Now:" << endl;
-    cout << endl;
-}
-
-int MenuFunctions(char option){
-
-    char menuSelect;
-    int i;
-
-        if (option == 'K' || option == 'k'){
-            cout << endl << "CONTROLS" << endl;
-            cout << endl;
-            cout << "The controls for the first level on the keyboard is: Q,W,A,S" << endl;
-            cout << "The second Level Q,W,E,A,S,D,Z,X,C" << endl;
-            cout << "and the final level 1,2,3,4,Q,W,E,R,A,S,D,F,Z,X,C,V." << endl;
-            cout << endl << endl;
-            cout << "Enter Y to return to Main Menu." << endl;
-            cin >> menuSelect;
-            cout << endl;
-        }
-        if (option =='L' || option =='l'){
-            cout << endl << "OBJECTIVE" << endl;
-            cout << "This is a simple game where you have to whack the mole, represented by a *, by hitting the key" << endl;
-            cout << "that corresponds with the mole's location. The controls for each difficulty are shown under the" << endl;
-            cout << "Controls option in the menu. You only get a few seconds to see where the mole is located, so pay" << endl;
-            cout << "attention so you don't miss it!" << endl << endl;
-            cout << "Enter Y to return to Main Menu." << endl;
-            cin >> menuSelect;
-            cout << endl;
-        }
-        if (option == 'P' || option == 'p'){
-            cout << "Game starts in 10 seconds. Get ready to do some whacking!" << endl;    //this is currently broken, I'm trying to fix it
-        }
-}
+char MenuFunctions(char option);
 
 int main(){
 
     int i = 0;
     char userInput;
     char menuSelect;
-
-    cout << "Welcome to Whack-a-mole!";
-    cout << endl << endl;
+    int loopCheck;
 
     while (i < 1){
         MainMenu();
         cin >> userInput;
-        MenuFunctions(userInput);
+        loopCheck = MenuFunctions(userInput);
+        if (loopCheck == 'i' || loopCheck == 'o' || loopCheck == 'u'){
+            i = 1;
+        }
     }
 
     return 0;
+}
+
+void MainMenu(){
+
+    cout << "Welcome to Whack-a-mole!" << endl;
+    cout << endl << "MAIN MENU:" << endl;
+    cout << "Press L for How to Play:" << endl;
+    cout << "Press K for Controls:" << endl;
+    cout << "Press P to Play Now:" << endl;
+    cout << endl;
+}
+
+char MenuFunctions(char option){
+
+    char randomInput;
+    int difficulty;
+
+        if (option == 'k'){
+            system("cls");
+            cout << endl << "CONTROLS" << endl;
+            cout << endl;
+            cout << "The controls change for each difficulty setting as the levels increase in size." << endl;
+            cout << "All the keys used make a grid that corresponds to locations in the level." << endl;
+            cout << "First Level (2x2): Q,W,A,S" << endl;
+            cout << "Second Level (3x3): Q,W,E,A,S,D,Z,X,C" << endl;
+            cout << "Third Level (4x4): 1,2,3,4,Q,W,E,R,A,S,D,F,Z,X,C,V." << endl << endl;
+            cout << endl << "To continue, press any key and hit ENTER." << endl;
+            cin >> randomInput;
+            system("cls");
+            return option;
+        }
+        else if (option =='l'){
+            system("cls");
+            cout << endl << "OBJECTIVE" << endl;
+            cout << "This is a simple game where you have to whack the mole, represented by a *, by hitting the key" << endl;
+            cout << "that corresponds with the mole's location. The controls for each difficulty are shown under the" << endl;
+            cout << "Controls option in the menu. You only get a few seconds to see where the mole is located, so pay" << endl;
+            cout << "attention so you don't miss it!" << endl << endl;
+            cout << "To continue, press any key and hit ENTER." << endl;
+            cin >> randomInput;
+            system("cls");
+            return option;
+        }
+        else if (option == 'p'){
+            system("cls");
+            cout << "Choose which difficulty to play" << endl << endl;
+            cout << "Enter 1 for Easy Mode" << endl;
+            cout << "Enter 2 for Medium Mode" << endl;
+            cout << "Enter 3 for Hard Mode" << endl;
+            cout << "Enter 4 to play through all levels" << endl;
+            cin >> difficulty;
+            if (difficulty == 1){
+                option = 'i';
+            }
+            if (difficulty == 2){
+                option = 'o';
+            }
+            if (difficulty == 3){
+                option = 'u';
+            }
+            return option;
+        }
+        else{
+            cout << endl << "That key doesn't do anything. Stop being incompetent!" << endl << endl;
+            return option;
+        }
 }
