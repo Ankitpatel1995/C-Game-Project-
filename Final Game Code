@@ -7,7 +7,8 @@
 #include <windows.h>
 using namespace std;
 
-//This version of the game does not have a difficulty select screen, but plays continuously from easy to hard mode if you get a perfect score
+/*This version of the game does not have a difficulty select screen,
+but plays continuously from easy to hard mode if you get a perfect score*/
 
 void MainMenu();                        //Contains the text for the main menu
 
@@ -15,9 +16,9 @@ char MenuFunctions(char option);        //Contains the text for each menu option
 
 int RunEasyDiff(int score);             //Game information for easy difficulty, returns the user's score
 
-int RunMediumDiff(int score);           //Game information for medium difficulty, return the user's score
+int RunMediumDiff(int score = 0);           //Game information for medium difficulty, return the user's score
 
-int RunHardDiff(int score);             //Game information for hard difficulty, return the user's score
+int RunHardDiff(int score = 0);             //Game information for hard difficulty, return the user's score
 
 int RunNightmareDiff(int score);        //Game information for a final challenge mode to test skilled users
 
@@ -34,25 +35,20 @@ int main(){
         MainMenu();
         cin >> userInput;
         loopCheck = MenuFunctions(userInput);
-        if (loopCheck == 'p'){
-            i = 1;
-        }
         system("cls");                                  //This function clears the screen
-        if (loopCheck == 'p'){
+        if (loopCheck == 'p'){                          //input "p" means user wants to start playing
             playerScore = RunEasyDiff(playerScore);     //Runs easy difficulty
-            FinalScore(playerScore);
+            FinalScore(playerScore);                    //Evaluates the user's performance on Easy difficulty
             if(playerScore >=16){
-                playerScore = 0;
                 playerScore = RunMediumDiff(playerScore);
                 FinalScore(playerScore);
                 if(playerScore >= 16){
-                    playerScore = 0;
                     playerScore = RunHardDiff(playerScore);
                     FinalScore(playerScore);
                     if (playerScore == 20){
                         cout << "If you think you are so good at this game," << endl;
                         cout << "press ; in the main menu and try NIGHTMARE difficulty!";
-                        Sleep(5000);
+                        Sleep(4000);
                         system("cls");
                     }
                 }
@@ -62,7 +58,9 @@ int main(){
             playerScore = RunNightmareDiff(playerScore);
             FinalScore (playerScore);
         }
-        i = 0;
+        if (loopCheck == 'q'){
+            break;
+        }
     }
     return 0;
 }
@@ -71,10 +69,10 @@ void MainMenu(){
 
     cout << "Welcome to Whack-a-mole!" << endl;
     cout << endl << "MAIN MENU:" << endl;
-    cout << "Press L for How to Play:" << endl;
-    cout << "Press K for Controls:" << endl;
-    cout << "Press P to Play Now:" << endl;
-    cout << endl;
+    cout << "Press j for How to Play:" << endl;
+    cout << "Press k for Controls:" << endl;
+    cout << "Press p to Play Now:" << endl;
+    cout << "Press q to Quit the Game:" << endl;
 }
 
 char MenuFunctions(char option){
@@ -92,9 +90,8 @@ char MenuFunctions(char option){
             cout << endl << "To continue, press any key and hit ENTER." << endl;
             cin >> randomInput;
             system("cls");
-            return option;
         }
-        else if (option =='l'){
+        else if (option =='j'){
             system("cls");
             cout << "HOW TO PLAY" << endl << endl;
             cout << "This is a simple game where you have to whack the mole, represented by a *, by hitting the key" << endl;
@@ -104,12 +101,11 @@ char MenuFunctions(char option){
             cout << "To continue, press any key and hit ENTER." << endl;
             cin >> randomInput;
             system("cls");
-            return option;
         }
         else if (option == 'p'){
             system("cls");
             cout << "Get ready to whack some moles!" << endl << endl;
-            Sleep(3000);
+            Sleep(2000);
         }
         else if (option == ';'){
             system("cls");
@@ -122,14 +118,22 @@ char MenuFunctions(char option){
             cout << "To start playing, press any key and hit ENTER" << endl;
             cin >> randomInput;
             system("cls");
-
-            return option;
+        }
+        else if (option == 'q'){
+            cout << endl << "Quitting to windows";
+            Sleep(500);
+            cout << ".";
+            Sleep(500);
+            cout << ".";
+            Sleep(500);
+            cout << ".";
+            Sleep(500);
+            cout << ".";
         }
         else{
             cout << endl << "That key doesn't do anything!" << endl << endl;
             Sleep(3000);            //This function pauses the program from running for a number of milliseconds
             system("cls");
-            return option;
         }
     return option;
 }
@@ -204,6 +208,7 @@ int RunMediumDiff(int score){
     char temp;
     char myArray[4][4]={{'O','O','O'},{'O','*','O'},{'O','O','O'}};
     char myArray2[4][4]={{'O','O','O'},{'O','O','O'},{'O','O','O'}};
+    score = 0;
 
     for (int i = 0; i < 20; ++i) {
 
@@ -264,6 +269,7 @@ int RunHardDiff(int score){
     char temp;
     char myArray[4][4]={{'O','O','O','O'},{'O','O','*','O'},{'O','O','O','O'},{'O','O','O','O'}};
     char myArray2[4][4]={{'O','O','O','O'},{'O','O','O','O'},{'O','O','O','O'},{'O','O','O','O'}};
+    score = 0;
 
     for (int i = 0; i < 20; ++i){
 
