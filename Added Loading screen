@@ -10,15 +10,17 @@ using namespace std;
 /*This version of the game does not have a difficulty select screen,
 but plays continuously from easy to hard mode if you get a perfect score*/
 
+void LoadingScreen();                   //Outputs a loading screen that is completely cosmetic, but still awesome
+
 void MainMenu();                        //Contains the text for the main menu
 
 char MenuFunctions(char option);        //Contains the text for each menu option, returns the user's input
 
 int RunEasyDiff(int score);             //Game information for easy difficulty, returns the user's score
 
-int RunMediumDiff(int score = 0);           //Game information for medium difficulty, return the user's score
+int RunMediumDiff(int score);           //Game information for medium difficulty, return the user's score
 
-int RunHardDiff(int score = 0);             //Game information for hard difficulty, return the user's score
+int RunHardDiff(int score);             //Game information for hard difficulty, return the user's score
 
 int RunNightmareDiff(int score);        //Game information for a final challenge mode to test skilled users
 
@@ -30,22 +32,14 @@ int main(){
     char userInput;
     int loopCheck;
     int playerScore = 0;
-            cout << "Welcome To Whack-A-Mole" << endl;
-            cout << endl;
-            cout << "Please wait till game Loads"<< endl;
-            cout << endl << "Loading";
-            Sleep(500);cout << ".";Sleep(500);cout << ".";Sleep(500);cout << ".";Sleep(500);cout << ".";system("cls");
-            cout << "Welcome To Whack-A-Mole" << endl;
-            cout << endl;
-            cout << "Please wait till game Loads"<< endl;
-            cout << endl << "Loading";
-            Sleep(500);cout << ".";Sleep(500);cout << ".";Sleep(500);cout << ".";Sleep(500);cout << ".";
-    system("cls");
-    while (i < 1){
-        MainMenu();
-        cin >> userInput;
-        loopCheck = MenuFunctions(userInput);
-        system("cls");                                  //This function clears the screen
+
+    LoadingScreen();            //Outputs loading screen
+    system("cls");              //Clears contents of loading screen
+    while (i < 1){              //Initiates main game loop
+        MainMenu();             //Outputs the main menu
+        cin >> userInput;       //User inputs key
+        loopCheck = MenuFunctions(userInput);           //User input causes output, input is saved as loopCheck
+        system("cls");
         if (loopCheck == 'p'){                          //input "p" means user wants to start playing
             playerScore = RunEasyDiff(playerScore);     //Runs easy difficulty
             FinalScore(playerScore);                    //Evaluates the user's performance on Easy difficulty
@@ -75,6 +69,29 @@ int main(){
     return 0;
 }
 
+void LoadingScreen(){
+    cout << "Welcome To Whack-A-Mole" << endl;
+    cout << endl;
+    cout << "Please wait while the game loads."<< endl;
+    cout << endl << "Loading";
+    Sleep(500);
+    cout << ".";
+    Sleep(500);
+    cout << ".";
+    Sleep(500);
+    cout << ".";
+    Sleep(500);
+    cout << ".";
+    system("cls");
+    cout << "Welcome To Whack-A-Mole" << endl;
+    cout << endl;
+    cout << "Please wait while the game loads"<< endl;
+    cout << endl << "Loading";
+    Sleep(500);cout << ".";
+    Sleep(500);cout << ".";
+    Sleep(500);cout << ".";
+    Sleep(500);cout << ".";
+}
 void MainMenu(){
     cout << "Welcome to Whack-a-mole!" << endl;
     cout << endl << "MAIN MENU:" << endl;
@@ -93,9 +110,9 @@ char MenuFunctions(char option){
             cout << "CONTROLS" << endl << endl;
             cout << "The controls change for each difficulty setting as the levels increase in size." << endl;
             cout << "The keys on the keyboard match the various grid locations used in game." << endl << endl;
-            cout << "Easy mode (2x2):" << "\t" << "1,2,Q,W" << endl;
-            cout << "Medium mode (3x3):" << "\t" << "1,2,3,Q,W,E,A,S,D" << endl;
-            cout << "Hard mode (4x4):" << "\t" << "1,2,3,4,Q,W,E,R,A,S,D,F,Z,X,C,V." << endl << endl;
+            cout << "Easy mode (2x2):" << "\t" << "1,2,q,w" << endl;
+            cout << "Medium mode (3x3):" << "\t" << "1,2,3,q,w,e,a,s,d" << endl;
+            cout << "Hard mode (4x4):" << "\t" << "1,2,3,4,q,w,e,r,a,s,d,f,z,x,c,v." << endl << endl;
             cout << endl << "To continue, press any key and hit ENTER." << endl;
             cin >> randomInput;
             system("cls");
@@ -139,7 +156,6 @@ char MenuFunctions(char option){
             Sleep(500);
             cout << ".";
             Sleep(500);
-            cout << ".";
             system("cls");
              cout << "Thank you for Playing Whack-a-Mole" << endl;
             cout << endl << "Quitting to windows";
@@ -150,12 +166,11 @@ char MenuFunctions(char option){
             Sleep(500);
             cout << ".";
             Sleep(500);
-            cout << ".";
 
         }
         else{
             cout << endl << "That key doesn't do anything!" << endl << endl;
-            Sleep(3000);            //This function pauses the program from running for a number of milliseconds
+            Sleep(2000);
             system("cls");
         }
     return option;
